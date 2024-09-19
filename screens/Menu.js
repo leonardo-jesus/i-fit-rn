@@ -1,10 +1,10 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const bowlCaloricoImage = require('../assets/bowlCalorico.jpg');
-const frangoSaladaImage = require('../assets/saladaFrango.jpg');
-const marmitaSaudavelImage = require('../assets/marmitaSaudavel.jpg');
-const saladaVariadaImage = require('../assets/saladaVariada.jpg');
+const bowlCaloricoImage = require('../assets/images/bowlCalorico.jpg');
+const frangoSaladaImage = require('../assets/images/saladaFrango.jpg');
+const marmitaSaudavelImage = require('../assets/images/marmitaSaudavel.jpg');
+const saladaVariadaImage = require('../assets/images/saladaVariada.jpg');
 
 const Menu = ({ navigation }) => {
   return (

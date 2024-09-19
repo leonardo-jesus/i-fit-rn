@@ -12,7 +12,7 @@ const SplashScreen = () => {
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
       <View style={styles.content}>
-        <Image source={require('../assets/logo.png')} style={styles.logo} />
+        <Image source={require('../assets/images/logo.png')} style={styles.logo} />
         <Text style={styles.title}>I-Fit</Text>
         <View style={styles.spacer} />
         <Text style={styles.subtitle}>Touch to continue</Text>
