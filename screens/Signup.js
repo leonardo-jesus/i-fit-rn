@@ -20,32 +20,32 @@ const Signup = ({ navigation }) => {
     setSuccessMessage('');
 
     if (!email || !password || !confirmPassword) {
-      setErrorMessage('Please fill in all fields');
+      setErrorMessage('Preencha todos os campos');
       return;
     }
 
     if (!isValidEmail(email)) {
-      setErrorMessage('Please enter a valid email');
+      setErrorMessage('Insira um email válido');
       return;
     }
 
     if (password.length < 6) {
-      setErrorMessage('Password must be at least 6 characters long');
+      setErrorMessage('A senha precisa ter pelo menos 6 caracteres');
       return;
     }
 
     if (password !== confirmPassword) {
-      setErrorMessage('Passwords do not match');
+      setErrorMessage('As senhas não são iguais');
       return;
     }
 
     if (isUserExists(email)) {
-      setErrorMessage('User already exists');
+      setErrorMessage('Usuário já existe');
       return;
     }
 
     addUser(email, password);
-    setSuccessMessage('Account created successfully!');
+    setSuccessMessage('Conta criada com sucesso!');
     navigation.navigate('Login');
   };
 
@@ -66,25 +66,25 @@ const Signup = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
-        placeholder='Password'
+        placeholder='Senha'
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <TextInput
         style={styles.input}
-        placeholder='Confirm Password'
+        placeholder='Confirme sua senha'
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         secureTextEntry
       />
 
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Cadastre-se</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.signupButton} onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.signupButtonText}>Back to Login</Text>
+        <Text style={styles.signupButtonText}>Voltar para o Login</Text>
       </TouchableOpacity>
     </View>
   );

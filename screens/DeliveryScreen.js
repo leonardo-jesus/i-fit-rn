@@ -19,32 +19,32 @@ export default function DeliveryScreen() {
 
   console.log("Restaurant Slice", restaurant);
   return (
-    <View className=" bg-[#f19c13] flex-1">
+    <View className=" bg-[#188345] flex-1">
       <SafeAreaView className="z-50">
         <View className=" flex-row justify-between items-center p-5">
           <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <XMarkIcon size={20} color="white" />
           </TouchableOpacity>
-          <Text className=" font-light text-white text-base">Order Help</Text>
+          <Text className=" font-light text-white text-base">Ajuda no pedido</Text>
         </View>
         <View className=" bg-white mx-5 my-2 rounded-lg p-6 z-50 shadow-lg">
           <View className="flex-row justify-between">
             <View>
               <Text className=" font-bold text-gray-400 text-base">
-                Estimated Arrival
+                Tempo de entrega estimado
               </Text>
-              <Text className="text-2xl font-extrabold">40-60 Minutes</Text>
+              <Text className="text-2xl font-extrabold">40-60 Minutos</Text>
             </View>
             <Image
               source={require("../assets/images/bikeGuy2.gif")}
               className="w-16 h-16"
             />
           </View>
-          <Progress.Bar width={140} indeterminate={true} color="#f19c13" />
+          <Progress.Bar width={140} indeterminate={true} color="#188345" />
           <Text className=" mt-3 text-gray-500 text-xs font-medium">
-            Your order at{" "}
+            Seu pedido no restaurante{" "}
             <Text className=" font-bold text-gray-800">{restaurant.name}</Text>{" "}
-            is being prepared
+            está sendo preparado
           </Text>
         </View>
       </SafeAreaView>
@@ -66,10 +66,10 @@ export default function DeliveryScreen() {
           title={restaurant.name}
           description={restaurant.description}
           identifier="origin"
-          pinColor="#f19c13"
+          pinColor="#188345"
         />
       </MapView>
-      <SafeAreaView className="bg-[#f19c13">
+      <SafeAreaView className="bg-[#188345">
         <View className="flex-row items-center justify-between space-x-3 p-4 mx-5">
           <Image
             source={require("../assets/images/bikeGuy.png")}
@@ -77,12 +77,12 @@ export default function DeliveryScreen() {
           />
           <View className="flex-1">
             <Text className=" font-extrabold text-base text-white">
-              Benny Chrispin
+              João Silva
             </Text>
-            <Text className=" font-bold text-xs text-gray-100">Your Rider</Text>
+            <Text className=" font-bold text-xs text-gray-100">Seu entregador</Text>
           </View>
           <TouchableOpacity className=" bg-white rounded-full p-2 flex items-center justify-center">
-            <PhoneIcon size={20} color="#f19c13" />
+            <PhoneIcon size={20} color="#188345" />
           </TouchableOpacity>
         </View>
       </SafeAreaView>

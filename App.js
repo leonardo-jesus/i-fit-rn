@@ -7,7 +7,6 @@ import DeliveryScreen from './screens/DeliveryScreen';
 import DetailsScreen from './screens/DetailsScreen';
 import HomeScreen from './screens/HomeScreen';
 import Login from './screens/Login';
-import Menu from './screens/Menu';
 import PreparingScreen from "./screens/PreparingScreen";
 import RestaurantScreen from "./screens/RestaurantScreen";
 import Signup from './screens/Signup';
@@ -57,10 +56,6 @@ export default function App() {
             name='Signup'
             component={Signup}
             options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Menu'
-            component={Menu}
           />
           <Stack.Screen
             name='Details'

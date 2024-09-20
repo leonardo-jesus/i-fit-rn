@@ -13,29 +13,34 @@ export default function DishRow({ id, name, image, description, price }) {
   const dispatch = useDispatch();
   const items = useSelector((state) => selectCartWithId(state, id));
   const [showFullDescription, setShowFullDescription] = useState(false);
+
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
-  //   handlePress addToCart
+
+  // Função para adicionar item ao carrinho
   const addItemsToCart = () => {
     dispatch(addToCart({ id, name, image, description, price }));
   };
+
+  // Função para remover item do carrinho
   const removeItemFromCart = () => {
-    if (!items.length > 0) return;
+    if (items.length <= 0) return;
     dispatch(removeFromCart({ id }));
   };
+
   return (
     <View className="bg-white rounded-lg p-4 my-2">
-      <View className=" flex-row items-center justify-between space-x-2">
-        <View className=" flex-1 space-x-1">
-          <Text className=" font-extrabold text-base text-gray-800">
+      <View className="flex-row items-center justify-between space-x-2">
+        <View className="flex-1 space-x-1">
+          <Text className="font-extrabold text-base text-gray-800">
             {name}
           </Text>
           {showFullDescription ? (
-            <Text className=" mt-1 text-xs text-gray-500">{description}</Text>
+            <Text className="mt-1 text-xs text-gray-500">{description}</Text>
           ) : (
             <TouchableOpacity onPress={toggleDescription}>
-              <Text className=" mt-1 text-xs text-gray-500">
+              <Text className="mt-1 text-xs text-gray-500">
                 {description.slice(0, 100)}
                 <Text style={{ fontWeight: "bold", color: "black" }}>
                   ...More
@@ -45,22 +50,22 @@ export default function DishRow({ id, name, image, description, price }) {
           )}
 
           <View className="mt-2">
-            <Text className=" font-extrabold text-sm text-gray-900">
-              <Text className=" font-bold text-gray-600 text-sm">Rf</Text>
+            <Text className="font-extrabold text-sm text-gray-900">
+              <Text className="font-bold text-gray-600 text-sm">R$</Text>
               {""} {price.toLocaleString()}
             </Text>
           </View>
-          <View className=" mt-2 flex-row items-center space-x-2">
+          <View className="mt-2 flex-row items-center space-x-2">
             <TouchableOpacity onPress={removeItemFromCart}>
-              <View className=" bg-[#f19c13] rounded-full p-[3px]">
+              <View style={{ backgroundColor: '#188345', borderRadius: 9999, padding: 3 }}>
                 <MinusIcon size={18} color="white" />
               </View>
             </TouchableOpacity>
-            <Text className=" font-bold text-gray-800 text-base">
+            <Text className="font-bold text-gray-800 text-base">
               {items.length}
             </Text>
             <TouchableOpacity onPress={addItemsToCart}>
-              <View className=" bg-[#f19c13] rounded-full p-[3px]">
+              <View style={{ backgroundColor: '#188345', borderRadius: 9999, padding: 3 }}>
                 <PlusIcon size={18} color="white" />
               </View>
             </TouchableOpacity>
@@ -68,7 +73,7 @@ export default function DishRow({ id, name, image, description, price }) {
         </View>
         <Image
           source={{ uri: urlFor(image).url() }}
-          className=" w-24 h-24 object-cover rounded-lg"
+          className="w-24 h-24 object-cover rounded-lg"
         />
       </View>
     </View>

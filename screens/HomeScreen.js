@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Image,
   SafeAreaView,
@@ -17,118 +17,135 @@ import {
 import { useSelector } from "react-redux";
 import CategoriesItem from "../components/CategoriesItem.js";
 import FeaturedItems from "../components/FeaturedItems.js";
-import sanityClient from "../sanity";
+import { categories, featured } from "../data/mock.js";
 import { selectCartItems } from "../slice/CartSlice";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
   const items = useSelector(selectCartItems);
-  const [categories, setCategories] = useState([]);
-  const [featured, setFeatured] = useState([]);
-
-  //  categories APIs
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `
-    *[_type == "category"]
-    `
-      )
-      .then((data) => setCategories(data));
-  }, []);
-
-  //   featured APIs
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `
-    *[_type == "featured"]
-    `
-      )
-      .then((data) => setFeatured(data));
-  }, []);
-
-  console.log("Categories", categories);
-  console.log("Featured Items", featured);
 
   return (
     <>
-      <SafeAreaView className=" bg-white">
-        <View className="bg-white">
-          <View className=" mx-4 p-3 mt-3 mb-3 flex-row items-center justify-between space-x-3">
+      <SafeAreaView style={{ backgroundColor: 'white' }}>
+        <View style={{ backgroundColor: 'white' }}>
+          <View
+            style={{
+              marginHorizontal: 16,
+              padding: 12,
+              marginTop: 12,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
             <TouchableOpacity>
               <Image
-                source={require("../assets/images/IMG_0616.jpg")}
-                className=" w-14 h-14 object-contain rounded-full"
+                source={require("../assets/images/avatar.png")}
+                style={{ width: 56, height: 56, borderRadius: 28 }}
               />
             </TouchableOpacity>
-            <View className="flex-1">
-              <Text className=" font-bold text-base text-gray-800">
-                Welcome Benny!
+            <View style={{ flex: 1, marginLeft: 12 }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 16, color: 'gray' }}>
+                Seja bem-vindo!
               </Text>
-              <Text className="font-light text-xs text-gray-600">
-                Kigali - Rwanda
+              <Text style={{ fontWeight: '300', fontSize: 12, color: 'gray' }}>
+                São Paulo - São Paulo
               </Text>
             </View>
             <TouchableOpacity
               onPress={() => navigation.navigate("Cart")}
-              className=" p-3 flex items-center justify-center rounded-full bg-gray-300"
+              style={{
+                padding: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 9999,
+                backgroundColor: 'rgb(220, 220, 220)',
+              }}
             >
-              <Text className=" absolute top-0 left-3 font-bold text-red-500">
-                {items.length}
-              </Text>
+              {items.length > 0 && (
+                <Text
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 12,
+                    fontWeight: 'bold',
+                    color: 'red',
+                  }}
+                >
+                  {items.length}
+                </Text>
+              )}
               <TrashIcon size={22} color="black" />
             </TouchableOpacity>
           </View>
-          <View className=" mx-4 mb-3">
-            <Text className=" font-thin text-4xl text-black">Order Your</Text>
-            <Text className=" font-extrabold text-4xl text-black">
-              Favorite Food😋
+          <View style={{ marginHorizontal: 16, marginBottom: 12 }}>
+            <Text style={{ fontWeight: '200', fontSize: 32, color: 'black' }}>
+              Peça sua
+            </Text>
+            <Text style={{ fontWeight: '800', fontSize: 32, color: 'black' }}>
+              comida saudável 😋
             </Text>
           </View>
-          {/* search Phrase */}
-          <View className=" m-1 mx-4 p-3 bg-gray-300 rounded-xl mb-3 shadow-lg">
-            <TouchableOpacity className=" absolute top-2 left-2">
+          {/* Search Bar */}
+          <View
+            style={{
+              marginHorizontal: 16,
+              marginBottom: 12,
+              padding: 12,
+              backgroundColor: 'rgb(220, 220, 220)',
+              borderRadius: 12,
+              position: 'relative',
+            }}
+          >
+            <TouchableOpacity
+              style={{ position: 'absolute', top: 12, left: 12 }}
+            >
               <MagnifyingGlassIcon size={24} color="black" />
             </TouchableOpacity>
             <TextInput
-              placeholder="Search Restaurant and Dishes,..."
+              placeholder="Procure restaurantes ou pratos..."
               placeholderTextColor="black"
               keyboardType="default"
-              className=" placeholder:px-8"
+              style={{ paddingLeft: 40 }}
             />
-            <TouchableOpacity className="absolute top-2 right-2 border-l px-1">
+            <TouchableOpacity
+              style={{ position: 'absolute', top: 12, right: 12 }}
+            >
               <AdjustmentsHorizontalIcon size={24} color="black" />
             </TouchableOpacity>
           </View>
         </View>
       </SafeAreaView>
-      {/* menu, categories and dishes section */}
+      {/* Categories and Featured Items */}
       <ScrollView vertical showsVerticalScrollIndicator={false}>
-        <View className="mx-4 mt-2 mb-2">
-          <Text className=" font-extrabold text-[#f19c13] text-lg">
-            Categories
+        <View style={{ marginHorizontal: 16, marginTop: 8, marginBottom: 8 }}>
+          <Text
+            style={{
+              fontWeight: '800',
+              fontSize: 18,
+              color: '#188345',
+            }}
+          >
+            Categorias
           </Text>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            className=" mt-2"
+            style={{ marginTop: 8 }}
           >
             {categories.map((category) => (
               <CategoriesItem key={category._id} name={category.name} />
             ))}
           </ScrollView>
-          {/* menu */}
-          <View className=" mt-1 mb-10">
-            <View>
-              {featured.map((featured) => (
-                <FeaturedItems
-                  key={featured._id}
-                  id={featured._id}
-                  featured={featured}
-                />
-              ))}
-            </View>
+          {/* Featured Items */}
+          <View style={{ marginTop: 8, marginBottom: 40 }}>
+            {featured.map((item) => (
+              <FeaturedItems
+                key={item._id}
+                id={item._id}
+                featured={item}
+              />
+            ))}
           </View>
         </View>
       </ScrollView>

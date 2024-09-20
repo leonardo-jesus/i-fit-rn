@@ -15,7 +15,7 @@ const SplashScreen = () => {
         <Image source={require('../assets/images/logo.png')} style={styles.logo} />
         <Text style={styles.title}>I-Fit</Text>
         <View style={styles.spacer} />
-        <Text style={styles.subtitle}>Touch to continue</Text>
+        <Text style={styles.subtitle}>Toque para continuar</Text>
       </View>
     </TouchableOpacity>
   );
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: 'rgb(24, 131, 69)',
+    color: '#188345',
     marginTop: 20,
   },
   spacer: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'rgb(24, 131, 69)',
+    color: '#188345',
   },
 });
 

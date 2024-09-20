@@ -1,9 +1,9 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { MapPinIcon } from "react-native-heroicons/outline";
 import { StarIcon } from "react-native-heroicons/solid";
 import { urlFor } from "../sanity";
-import { useNavigation } from "@react-navigation/native";
 
 export default function RestaurantItems({
   id,
@@ -46,8 +46,8 @@ export default function RestaurantItems({
           {name}
         </Text>
         <View className=" flex-row items-center space-x-2 mx-4 mt-1">
-          <StarIcon size={18} color="#f19c13" />
-          <Text className=" font-bold text-[#f19c13]">
+          <StarIcon size={18} color="#188345" />
+          <Text className=" font-bold text-[#188345]">
             {rating} .{""}
           </Text>
           <Text className=" font-semibold text-xs text-gray-500]">{genre}</Text>

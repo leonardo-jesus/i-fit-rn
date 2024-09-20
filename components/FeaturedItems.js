@@ -5,31 +5,36 @@ import RestaurantItems from "./RestaurantItems";
 
 export default function FeaturedItems({ id, featured }) {
   const [restaurants, setRestaurants] = useState([]);
-  //   fetch Restaurants Items APIs
+
+  // Fetch Restaurants Items from API
   useEffect(() => {
     sanityClient
       .fetch(
         `
-    *[_type == "featured" && _id == $id]{
-        ...,
-        restaurants[]-> {
+      *[_type == "featured" && _id == $id]{
           ...,
-          type->{name},
-          dishes[]->
-        },
-      }[0]`,
+          restaurants[]-> {
+            ...,
+            type->{name},
+            dishes[]->
+          },
+        }[0]`,
         { id }
       )
       .then((data) => setRestaurants(data?.restaurants));
   }, [id]);
+
   console.log("Restaurants Items", restaurants);
+
   return (
-    <View className=" mt-5">
-      <Text className=" font-bold text-lg text-[#f19c13]">{featured.name}</Text>
-      <Text className="text-gray-600 font-light">
+    <View style={{ marginTop: 20 }}>
+      <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#188345' }}>
+        {featured.name}
+      </Text>
+      <Text style={{ color: 'gray', fontWeight: '300' }}>
         {featured.short_description}
       </Text>
-      {/* fetch restaurants APIs */}
+      {/* Fetch restaurants APIs */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

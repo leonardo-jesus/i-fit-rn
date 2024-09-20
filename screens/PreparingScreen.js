@@ -1,8 +1,8 @@
-import { View, Text, SafeAreaView, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
+import { SafeAreaView } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Progress from "react-native-progress";
-import { useNavigation } from "@react-navigation/native";
 
 export default function PreparingScreen() {
   const navigation = useNavigation();
@@ -14,7 +14,7 @@ export default function PreparingScreen() {
   }, []);
 
   return (
-    <SafeAreaView className="flex-1 justify-center items-center bg-[#f19c13]">
+    <SafeAreaView className="flex-1 justify-center items-center bg-[#188345]">
       <Animatable.Image
         source={require("../assets/images/delivery.gif")}
         className="w-96 h-96"
@@ -26,7 +26,7 @@ export default function PreparingScreen() {
         iterationCount={3}
         className=" text-base my-10 text-white font-extrabold text-center"
       >
-        Waiting for Restaurant to approve your order!
+        Aguardando restaurante aprovar o seu pedido!
       </Animatable.Text>
       <Progress.CircleSnail color="white" size={60} indeterminate={true} />
     </SafeAreaView>

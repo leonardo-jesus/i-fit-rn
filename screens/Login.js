@@ -13,7 +13,7 @@ const Login = ({ navigation }) => {
     setSuccessMessage('');
 
     if (!email || !password) {
-      setErrorMessage('Please fill in all fields');
+      setErrorMessage('Preencha todos os campos');
       return;
     }
 
@@ -22,7 +22,7 @@ const Login = ({ navigation }) => {
     if (user) {
       setSuccessMessage('Login successful!');
       setTimeout(() => {
-        navigation.navigate('Menu');
+        navigation.navigate('HomeScreen');
       }, 1000);
     } else {
       setErrorMessage('Invalid email or password');
@@ -57,7 +57,7 @@ const Login = ({ navigation }) => {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.signupButton} onPress={() => navigation.navigate('Signup')}>
-        <Text style={styles.signupButtonText}>Don't have an account? Sign up</Text>
+        <Text style={styles.signupButtonText}>Não tem uma conta? Cadastre-se</Text>
       </TouchableOpacity>
     </View>
   );
