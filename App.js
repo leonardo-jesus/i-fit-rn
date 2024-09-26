@@ -4,7 +4,6 @@ import React from 'react';
 import { Provider } from "react-redux";
 import CartScreen from "./screens/CartScreen";
 import DeliveryScreen from './screens/DeliveryScreen';
-import DetailsScreen from './screens/DetailsScreen';
 import HomeScreen from './screens/HomeScreen';
 import Login from './screens/Login';
 import PreparingScreen from "./screens/PreparingScreen";
@@ -55,11 +54,6 @@ export default function App() {
             name='Signup'
             component={Signup}
             options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='Details'
-            component={DetailsScreen}
-            options={{ title: 'Detalhes do Prato' }}
           />
           <Stack.Screen
             name='Delivery'

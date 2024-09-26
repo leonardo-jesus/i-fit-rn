@@ -25,7 +25,7 @@ export default function CartScreen() {
   const dispatch = useDispatch();
   const [groupedItemsInCart, setGroupedItemsInCart] = useState([]);
   const TotalCart = useSelector(selectCartTotal);
-  const DeliveryFees = 5000;
+  const DeliveryFees = 2.00;
   const totalAmount = TotalCart + DeliveryFees;
 
   useEffect(() => {
@@ -112,13 +112,13 @@ export default function CartScreen() {
         <View className="flex-row justify-between">
           <Text className=" font-medium text-gray-500">Taxa de entrega</Text>
           <Text className="font-extrabold text-gray-700">
-            R$ {""} {items.length > 0 ? DeliveryFees : "0"}
+            R$ {""} {items.length > 0 ? DeliveryFees.toFixed(2) : "0.00"}
           </Text>
         </View>
         <View className="flex-row justify-between border-t border-gray-400 pt-3">
           <Text className=" font-extrabold text-gray-700">Quantidade total</Text>
           <Text className="font-extrabold text-gray-800">
-            R$ {""} {items.length > 0 ? totalAmount.toLocaleString() : "0"}
+            R$ {""} {items.length > 0 ? totalAmount.toFixed(2) : "0.00"}
           </Text>
         </View>
         <TouchableOpacity

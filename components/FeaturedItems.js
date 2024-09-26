@@ -1,31 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ScrollView, Text, View } from "react-native";
-import sanityClient from "../sanity";
+import { restaurants } from "../data/mock";
 import RestaurantItems from "./RestaurantItems";
 
-export default function FeaturedItems({ id, featured }) {
-  const [restaurants, setRestaurants] = useState([]);
-
-  // Fetch Restaurants Items from API
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `
-      *[_type == "featured" && _id == $id]{
-          ...,
-          restaurants[]-> {
-            ...,
-            type->{name},
-            dishes[]->
-          },
-        }[0]`,
-        { id }
-      )
-      .then((data) => setRestaurants(data?.restaurants));
-  }, [id]);
-
-  console.log("Restaurants Items", restaurants);
-
+export default function FeaturedItems({ featured }) {
   return (
     <View style={{ marginTop: 20 }}>
       <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#188345' }}>

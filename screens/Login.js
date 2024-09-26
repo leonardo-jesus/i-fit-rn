@@ -22,7 +22,7 @@ const Login = ({ navigation }) => {
     if (user) {
       setSuccessMessage('Login successful!');
       setTimeout(() => {
-        navigation.navigate('HomeScreen');
+        navigation.navigate('Home');
       }, 1000);
     } else {
       setErrorMessage('Invalid email or password');
